@@ -3,7 +3,7 @@
 ViScoreR is an R package which evaluates dimensionality reduction (DR) of single-cell data by comparing neighbourhood relations of labelled cell populations in the high-dimensional (HD) input data and the low-dimensional (LD) embedding, and between different LD embeddings.
 Each DR tool introduces artifacts.
 ViScoreR is a diagnostic tool that identifies them easily, so as to prevent faulty reasoning about data based on a misleading embedding.
-(If you're interested in unsupervised evaluation, we recommend the use of R<sup>NX</sup> curves instead.)
+(If you're interested in unsubervised evaluation, we recommend the use of R<sub>NX</sub> curves instead.)
 
 Our metrics are computed at a cell population level, rather than having a single score for an embedding.
 
@@ -51,7 +51,8 @@ Use the `?ViScoreR::function_name` syntax to view the help file for a function o
 
 A short case study is shown in the `poster.pdf` file, using the [Shekhar retina](https://rdrr.io/github/LTLA/scRNAseq/man/ShekharRetinaData.html) scRNA-seq dataset.
 
-To download RDS files with the pre-processed HD data (50 principal components of the re-scaled count data), cell labels, a UMAP embedding and a t-SNE embedding, use [Git LFS](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage).
+`Shekhar_hd.RDS`, `Shekhar_annot.RDS`, `Shekhar_umap.RDS` and `Shekhar_tsne.RDS` are pre-processed (PCA-reduced) HD data, cell annotation, UMAP embedding and t-SNE embedding RDS files, respectively.
+Use `readRDS` to load them
 
 <hr>
 
@@ -63,14 +64,14 @@ For a matrix of coordinates *X*, the *K*-ary neighbourhood of each point in *X* 
 The label for each respective identified neighbour are retrieved.
 
 These neighbourhoods-per-point are then aggregated for each cell population.
-Thus, each cell population *p* of size *N<sup>p</sup>* has *N<sup>p</sup>* vectors of length *K*.
+Thus, each cell population *p* of size *N<sub>p</sub>* has *N<sub>p</sub>* vectors of length *K*.
 
 For each cell in each population *p*, we record the number of neighbours that come from the same population, out of all the *K* neighbours.
-Each population now has *N<sup>p</sup>* values (each between 0 and *K*).
+Each population now has *N<sub>p</sub>* values (each between 0 and *K*).
 We record these values as a distribution (the *likeness distribution*, referring to the number of 'like' cells).
 
-These likeness distributions are calculated for each population, using a matrix of HD coordinates *X<sup>HD</sup>* and a matrix of LD coordinates *X<sup>LD</sup>*.
-The xNPE score for a gives population is then the (Earth mover's distance)[https://en.wikipedia.org/wiki/Earth_mover%27s_distance] between its likeness distribution in HD and in LD.
+These likeness distributions are calculated for each population, using a matrix of HD coordinates *X<sub>HD</sub>* and a matrix of LD coordinates *X<sub>LD</sub>*.
+The xNPE score for a gives population is then the [Earth mover's distance](https://en.wikipedia.org/wiki/Earth_mover%27s_distance) between its likeness distribution in HD and in LD.
 
 The lower this value, the less distortion occurs in the process of the embedding.
 
