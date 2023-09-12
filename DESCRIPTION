@@ -1,0 +1,13 @@
+Package: ViScoreR
+Type: Package
+Title: Supervised evaluation of dimensionality reduction
+Version: 0.1.0
+Author: David Novak
+Maintainer: David Novak <davidnovakcz@hotmail.com>
+Description: Cell population-level evaluation of low-dimensional embeddings of labelled biological single-cell datasets
+License: MIT
+Encoding: UTF-8
+LazyData: true
+Imports: emdist, BiocNeighbors
+Depends: tidyverse
+RoxygenNote: 7.2.1
